@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<article id="main" class="main col-md-12">  
+  <div class="row">
+    <% @products.each do |product| %>   
+      <a href="<%= product_path(product) %>">
+        <div class="col-md-3">
+          <div class="review">    
+            <%= image_tag product.product_image, :width => '75%', :height => '225' %>
+          </div>               
+          <h3><%= product.product_name %></h3>
+          <h4>Giá: <%= product.product_price %> ₫</h4>   
+          <h6><%= link_to 'Edit', edit_product_path(product) if current_user && current_user.admin? %></h6>
+          <h6><%= link_to 'Destroy', product , method: :delete, data: { confirm: 'Are you sure?' } if current_user && current_user.admin? %></h6>  
+        </div>
+      </a>  
+    <% end %>
+  </div>
+</article>
